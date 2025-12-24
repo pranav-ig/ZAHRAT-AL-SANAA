@@ -1,0 +1,36 @@
+{
+    "name" : "ZAHRAT AL SANAA",
+    "short_name" : "ZAHRAT AL SANAA",
+    "start_url" : ".",
+    "background_color" : "#0E2431",
+    "theme_color" : "#0E2431",
+    "display" : "standalone",
+    "icons" : [
+        {
+            "src" : "img/logo_256x256.png",
+            "sizes" : "256x256",
+            "type" : "image/png"
+        },
+        {
+            "src" : "img/logo_512x512.png",
+            "sizes" : "512x512",
+            "type" : "image/png"
+        }
+        
+
+    ],
+    "screenshots": [
+    {
+      "src" : "img/logo_256x256.png",
+            "sizes" : "256x256",
+            "type" : "image/png",
+            "form_factor": "narrow"
+    },
+    {
+      "src" : "img/logo_512x512.png",
+        "sizes" : "512x512",
+        "type" : "image/png",
+        "form_factor": "wide"
+    }
+  ]
+} 
