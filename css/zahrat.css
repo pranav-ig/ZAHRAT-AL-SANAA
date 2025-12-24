@@ -1,0 +1,37 @@
+/* ============= GOOGLE FONTS ======= */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+/* ========= VARIABLES CSS ========= */
+
+.custom-head-name-container {
+    justify-content: space-between;
+    margin: 0;
+}
+.nav__logo {
+    width: 100px;
+}
+.nav__logo img {
+    height: 45px;
+}
+
+.mobile-section h1 {
+    text-align: center;
+}
+.social-custom-icon {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 20px;
+}
+.custom-home {
+    display: none;
+}
+.mobile-section {
+    display: block;
+}
+@media screen and (min-width: 769px) {
+  .custom-home {
+    display: block;
+  }
+  .mobile-section {
+    display: none;
+  }
+}
