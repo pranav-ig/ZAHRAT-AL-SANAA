@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/zahrat.css">
+    <!-- ===========BOX ICON========== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <meta name="theme_color" content="#0E2431">
+    <link rel="manifest" href="manifest.json">
+    <title>ZAHRAT AL SANAA</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      align-items: center;
+      justify-content: center;
+      background-color: #0E2431;
+    }
+
+    .login-box {
+      background: #ffffff;
+      padding: 40px;
+      width: 360px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #0E2431;
+      margin-top: 80px;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: white;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: #2c5364;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #203a43, #2c5364);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .login-box button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <header class="l-header">
+        <nav class="nav bd-grid custom-head-name-container">
+            <div class="nav__logo">
+                <a href="/index.html"><img src="./img/logoblue.png" alt="Welcome"></a>
+            </div>
+            <div class="custom-head-name">
+                ZAHRAT AL SANAA
+            </div>
+        </nav>
+    </header>
+
+  <div class="login-box">
+    <h2>Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Submit</button>
+
+    <div class="error" id="error">Invalid username or password</div>
+  </div>
+      <footer class="footer">
+        <p class="footer__title">ZAHRAT AL SANAA</p>
+
+        <div class="footer__social">
+            <a href="#" class="footer__icon"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
+        </div>
+        <p>&#169; 2025 copyright all right reserved</p>
+    </footer>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (username === "zahrat" && password === "Anas@123") {
+        sessionStorage.setItem('adminLogged', true);
+        window.location.href = "/upload.html";
+      } else {
+        error.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>

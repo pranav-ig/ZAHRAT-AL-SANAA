@@ -118,6 +118,7 @@
             <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
             <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
         </div>
+        <button class="custom-upload-page-btn">Admin Login</button>
         <p>&#169; 2025 copyright all right reserved</p>
     </footer>
     <!-- ===== SCROLL REVEAL ===== -->
@@ -178,6 +179,22 @@ window.onload = async () => {
     }
 };
     </script>
+    <script>
+  // Select the button
+  const adminButton = document.querySelector('.custom-upload-page-btn');
+
+  // Add click event
+  adminButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior
+
+    // Check if adminLogged is true in sessionStorage
+    if (sessionStorage.getItem('adminLogged') === 'true') {
+      window.location.href = '/upload.html';
+    } else {
+      window.location.href = '/agentLogin.html';
+    }
+  });
+</script>
 </body>
 
 </html>
