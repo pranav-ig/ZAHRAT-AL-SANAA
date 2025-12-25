@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/zahrat.css">
-    <!-- ===========BOX ICON========== -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
-    <meta name="theme_color" content="#0E2431">
-    <link rel="manifest" href="manifest.json">
-    <title>ZAHRAT AL SANAA</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/zahrat.css">
+
+  <!-- ===========BOX ICON========== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+
+  <meta name="theme_color" content="#0E2431">
+  <link rel="manifest" href="manifest.json">
+  <title>ZAHRAT AL SANAA</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -85,52 +88,80 @@
     }
   </style>
 </head>
+
 <body>
-    <header class="l-header">
-        <nav class="nav bd-grid custom-head-name-container">
-            <div class="nav__logo">
-                <a href="/index.html"><img src="./img/logoblue.png" alt="Welcome"></a>
-            </div>
-            <div class="custom-head-name">
-                ZAHRAT AL SANAA
-            </div>
-        </nav>
-    </header>
+<header class="l-header">
+  <nav class="nav bd-grid custom-head-name-container">
+    <div class="nav__logo">
+      <a href="/index.html"><img src="./img/logoblue.png" alt="Welcome"></a>
+    </div>
+    <div class="custom-head-name">
+      ZAHRAT AL SANAA
+    </div>
+  </nav>
+</header>
 
-  <div class="login-box">
-    <h2>Login</h2>
+<div class="login-box">
+  <h2>Login</h2>
 
-    <input type="text" id="username" placeholder="Username">
+  <input type="text" id="username" placeholder="Username">
+
+  <!-- Password field with eye icon -->
+  <div style="position: relative;">
     <input type="password" id="password" placeholder="Password">
-
-    <button onclick="login()">Submit</button>
-
-    <div class="error" id="error">Invalid username or password</div>
+    <i class="bx bx-show"
+       id="togglePassword"
+       style="
+         position: absolute;
+         right: 12px;
+         top: 40%;
+         transform: translateY(-50%);
+         cursor: pointer;
+         color: #555;
+         font-size: 20px;
+       ">
+    </i>
   </div>
-      <footer class="footer">
-        <p class="footer__title">ZAHRAT AL SANAA</p>
 
-        <div class="footer__social">
-            <a href="#" class="footer__icon"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
-        </div>
-        <p>&#169; 2025 copyright all right reserved</p>
-    </footer>
-  <script>
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const error = document.getElementById("error");
+  <button onclick="login()">Submit</button>
 
-      if (username === "zahrat" && password === "Anas@123") {
-        sessionStorage.setItem('adminLogged', true);
-        window.location.href = "/upload.html";
-      } else {
-        error.style.display = "block";
-      }
+  <div class="error" id="error">Invalid username or password</div>
+</div>
+
+<footer class="footer">
+  <p class="footer__title">ZAHRAT AL SANAA</p>
+
+  <div class="footer__social">
+    <a href="#" class="footer__icon"><i class="bx bxl-facebook"></i></a>
+    <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
+    <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
+  </div>
+  <p>&#169; 2025 copyright all right reserved</p>
+</footer>
+
+<script>
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (username === "zahrat" && password === "Anas@123") {
+      sessionStorage.setItem('adminLogged', true);
+      window.location.href = "/upload.html";
+    } else {
+      error.style.display = "block";
     }
-  </script>
+  }
+
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+
+  togglePassword.addEventListener("click", () => {
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    togglePassword.className = isPassword ? "bx bx-hide" : "bx bx-show";
+  });
+</script>
 
 </body>
 </html>
