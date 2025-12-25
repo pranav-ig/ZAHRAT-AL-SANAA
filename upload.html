@@ -253,6 +253,9 @@
             alert("Please select an image");
             return;
         }
+        const spinner = document.createElement('div');
+        spinner.className = 'spinner-custom';
+        btnUpload.appendChild(spinner);
 
         const formData = new FormData();
         formData.append("file", file);
@@ -270,10 +273,6 @@
             await storeImageUrl(imageUrl);
 
             // Fetch all images and display them
-            // alert('Image Added');
-            const spinner = document.createElement('div');
-            spinner.className = 'spinner-custom';
-            btnUpload.appendChild(spinner);
 
             // Clear file input
             fileInput.value = "";
