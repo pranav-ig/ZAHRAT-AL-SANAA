@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/zahrat.css">
+    <!-- ===========BOX ICON========== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <meta name="theme_color" content="#0E2431">
+    <link rel="manifest" href="manifest.json">
+    <title>ZAHRAT AL SANAA</title>
+    <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .upload-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 350px;
+    transition: transform 0.3s ease;
+    padding-top: 100px;
+    width: 100%;
+  }
+
+  .upload-container:hover {
+    transform: translateY(-5px);
+  }
+
+  .upload-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: #6C63FF;
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .custom-file-upload:hover {
+    background: #5751d1;
+  }
+
+  .upload-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #FF6584;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .upload-button:hover {
+    background: #e04e70;
+  }
+
+  .file-name {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+</head>
+
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="l-header">
+        <nav class="nav bd-grid custom-head-name-container">
+            <div class="nav__logo">
+                <a href="/index.html"><img src="./img/logoblue.png" alt="Welcome"></a>
+            </div>
+            <div class="custom-head-name">
+                ZAHRAT AL SANAA
+            </div>
+        </nav>
+    </header>
+    <div class="upload-container">
+    <h1>Upload Image</h1>
+    <label class="custom-file-upload">
+        Choose File
+        <input type="file" id="fileInput" accept="image/*">
+    </label>
+    <div class="file-name" id="fileName">No file chosen</div>
+    <button class="upload-button" onclick="uploadImage()">Upload</button>
+    </div>
+        <footer class="footer">
+        <p class="footer__title">ZAHRAT AL SANAA</p>
+
+        <div class="footer__social">
+            <a href="#" class="footer__icon"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
+        </div>
+        <p>&#169; 2025 copyright all right reserved</p>
+    </footer>
+    <!-- ===== SCROLL REVEAL ===== -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- ===== MAIN JS ===== -->
+    <script src="./js/main.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+            const CLOUD_NAME = "procodeon";
+    const UPLOAD_PRESET = "zahrat";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAfNn4qiC8Lnmww4WcZfuaIcBfKHuQKJW8",
+        authDomain: "zahrat-678d1.firebaseapp.com",
+        projectId: "zahrat-678d1",
+        storageBucket: "zahrat-678d1.appspot.com",
+        messagingSenderId: "593355527820",
+        appId: "1:593355527820:web:7fabfcbbd47ca865894da9",
+        measurementId: "G-QY46HMR28E"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const gallery = document.getElementById("gallery");
+
+    // Display multiple images in gallery
+    function displayImages(images) {
+        gallery.innerHTML = "";
+        images.forEach(url => {
+            const img = document.createElement("img");
+            img.src = url;
+            gallery.appendChild(img);
+        });
+    }
+
+    // Store image URL in Firestore
+    async function storeImageUrl(url) {
+        const ref = doc(db, "images", "list");
+        try {
+            await updateDoc(ref, {
+                urls: arrayUnion(url)
+            });
+        } catch (error) {
+            // If document doesn't exist, create it
+            await setDoc(ref, { urls: [url] });
+        }
+    }
+
+    // Upload image to Cloudinary
+    async function uploadImage() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please select an image");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+
+        try {
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            const imageUrl = data.secure_url;
+            console.log("Uploaded:", imageUrl);
+
+            await storeImageUrl(imageUrl);
+
+            // Fetch all images and display them
+            alert('Image Added');
+
+            // Clear file input
+            fileInput.value = "";
+            window.location.reload();
+
+        } catch (err) {
+            console.error("Upload failed", err);
+        }
+    }
+    window.uploadImage = uploadImage;
+    </script>
+    <script>
+  const fileInput = document.getElementById('fileInput');
+  const fileName = document.getElementById('fileName');
+
+  fileInput.addEventListener('change', () => {
+    if(fileInput.files.length > 0){
+      fileName.textContent = fileInput.files[0].name;
+    } else {
+      fileName.textContent = "No file chosen";
+    }
+  });
+
+  function uploadImage() {
+    if(fileInput.files.length > 0){
+      alert(`Uploading: ${fileInput.files[0].name}`);
+      // Add your upload logic here
+    } else {
+      alert("Please choose a file first.");
+    }
+  }
+</script>
+</body>
+
+</html>

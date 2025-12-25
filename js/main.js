@@ -49,3 +49,4 @@ sr.reveal('.skills__img', {delay: 400})
 sr.reveal('.work__img', {interval: 200})
 // ===== SCROLL CONTACT =====
 sr.reveal('.contact__input', {interval: 200})
+sr.reveal('.upload-container', {interval: 200})

@@ -35,3 +35,19 @@
     display: none;
   }
 }
+
+.custom-section-work {
+    background-color: currentColor;
+}
+.custom-section-bd-grid {
+    width: calc(80% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    margin-top: 10px;
+}
+
+.section-title {
+    color: white;
+}
