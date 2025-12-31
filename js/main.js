@@ -51,3 +51,15 @@ sr.reveal('.work__img', {interval: 200})
 sr.reveal('.contact__input', {interval: 200})
 sr.reveal('.upload-container', {interval: 200})
 
+if (sessionStorage.getItem('adminLogged') === 'true') {
+    $('.login-action-button-text').addClass('d-none');
+    $('.log-action-button-text').removeClass('d-none');
+    $('.logout-action-button-text').removeClass('d-none');
+    $('.profile-name').removeClass('d-none')
+} else {
+    $('.login-action-button-text').removeClass('d-none');
+    $('.log-action-button-text').addClass('d-none');
+    $('.logout-action-button-text').addClass('d-none');
+    $('.profile-name').addClass('d-none')
+}
+

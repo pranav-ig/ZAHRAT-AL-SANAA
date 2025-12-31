@@ -192,10 +192,15 @@
             <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
             <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
         </div>
+        <div class="login-action-button">
+            <button class="custom-upload-page-btn logout-action-button-text d-none">Log out</button>
+        </div>
         <p>&#169; 2025 copyright all right reserved</p>
     </footer>
     <!-- ===== SCROLL REVEAL ===== -->
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js" type="text/javascript"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- ===== MAIN JS ===== -->
     <script src="./js/main.js"></script>
     <script type="module">
@@ -344,6 +349,12 @@ window.onload = async () => {
         displayImages(snap.data().urls); // urls is an array
     }
 };
+  const logoutButton = document.querySelector('.logout-action-button-text');
+  logoutButton.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      sessionStorage.setItem('adminLogged', false);
+      window.location.href = '/index.html';
+  });
 </script>
 </body>
 

@@ -57,12 +57,16 @@ footer {
     margin: 20px;
     background-color: white;
     color: #0E2431;
-    width: 100px;
-    height: 30px;
+    width: 40%;
+    height: 35px;
     border: none;
     box-shadow: none;
     cursor: pointer;
 }
 .custom-upload-page-btn a {
     color: #0E2431;
+}
+
+.d-none {
+    display: none !important;
 }

@@ -24,6 +24,7 @@
             </div>
             <div class="custom-head-name">
                 ZAHRAT AL SANAA
+                <p class="profile-name d-none" style="font-size: 13px;">Anas</p>
             </div>
         </nav>
     </header>
@@ -118,11 +119,17 @@
             <a href="#" class="footer__icon"><i class="bx bxl-instagram"></i></a>
             <a href="#" class="footer__icon"><i class="bx bxl-twitter"></i></a>
         </div>
-        <button class="custom-upload-page-btn">Admin Login</button>
+        <div class="login-action-button">
+            <button class="custom-upload-page-btn login-action-button-text d-none">Admin Login</button>
+            <button class="custom-upload-page-btn log-action-button-text d-none">Go to Dashboard</button>
+            <button class="custom-upload-page-btn logout-action-button-text d-none">Log out</button>
+        </div>
         <p>&#169; 2025 copyright all right reserved</p>
     </footer>
     <!-- ===== SCROLL REVEAL ===== -->
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js" type="text/javascript"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript"></script>
     <!-- ===== MAIN JS ===== -->
     <script src="./js/main.js"></script>
         <script type="module">
@@ -181,19 +188,24 @@ window.onload = async () => {
     </script>
     <script>
   // Select the button
-  const adminButton = document.querySelector('.custom-upload-page-btn');
+  const LoginButton = document.querySelector('.login-action-button-text');
+  const profileButton = document.querySelector('.log-action-button-text');
+  const logoutButton = document.querySelector('.logout-action-button-text');
 
   // Add click event
-  adminButton.addEventListener('click', function(event) {
+    LoginButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        window.location.href = '/agentLogin.html';
+    });
+    profileButton.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default link behavior
-
-    // Check if adminLogged is true in sessionStorage
-    if (sessionStorage.getItem('adminLogged') === 'true') {
-      window.location.href = '/upload.html';
-    } else {
-      window.location.href = '/agentLogin.html';
-    }
-  });
+    window.location.href = '/upload.html';
+    });
+    logoutButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        sessionStorage.setItem('adminLogged', false);
+        window.location.href = '/index.html';
+    });
 </script>
 </body>
 
